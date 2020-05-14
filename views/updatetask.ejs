@@ -1,0 +1,160 @@
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>todoApp:login</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style type="text/css">
+    	#dist{
+    		margin-top:10px;
+    		color:red;
+
+    	}
+
+    	 
+    </style>   
+</head>
+<body >
+    
+ <% if(success!=''){ %>
+   <div id="al" class="alert alert-success alert-dismissible">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong> <%= success %>!</strong>
+  </div>
+  <%} %> 
+
+
+<a href="/see/task/all" class="btn btn-info">All Task</a>
+
+
+<div>
+  <h1>All your tasks</h1>
+</div>
+ <label for="UPDATE">Choose What you want to update:</label><br>
+ <label style="font-size:10px;font-weight:bold;"> Note:IF THE TASK IS COMPLETED UPDATE STATUS AS DONE</label><br>
+
+ 
+
+ 
+
+<select id="updateTask" name="updateTask" > 
+  
+  <option value="title" >Title</option>
+  <option value="content" >Content</option>
+  <option value="completedDate" >Completed Date</option>
+  <option  value="isDone" >Status</option>
+</select> 
+<button onclick="myFunction()">Select</button>
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+    <h2>ENTER DATA</h2>
+ <form id="parentDiv" method="POST" action="/post/all/taskUpdate">
+ <br>
+      <input id="dist" type="submit" class="btnRegister"  value="Update"/><br><br>
+      <input id="typeData" type="text" name="typeData"  placeholder="dont write here" ><br><br>
+     <label>ID: </label> <input type="number"  placeholder="Enter ID *" name="id" value="" required="" /><br>
+     <label>Enter update </label> <br> 
+    
+    
+
+ </form>
+ 
+
+<script>
+var count=0;
+var idd='';
+
+  function myFunction() {
+   var typeData = document.getElementById('typeData');
+   if(count!=0){
+	var deleteElement = document.getElementById(idd);	 
+	deleteElement.remove();
+	count=0;
+
+    }
+  	
+  	var updateTask = document.getElementById("updateTask"); 
+  	
+  	    if(updateTask.value=='title' && count==0){
+	       var input = document.createElement("input");
+             input.type = "text";
+             input.className = "title";
+             input.name = "title";
+             input.id = "title";
+             typeData.value="title"
+             idd="title"
+             input.placeholder = "Enter Title";
+             var parent = document.getElementById("parentDiv");
+             parent.appendChild(input);
+             
+              
+            
+        }else if(updateTask.value=='content' && count==0){
+        	var input = document.createElement("textarea");
+             input.type = "text";
+             input.className = "content";
+             input.name = "content";
+             input.id = "content";
+             typeData.value="content"
+             idd = "content";
+             input.placeholder = "Enter Content";
+             var parent = document.getElementById("parentDiv");
+             parent.appendChild(input);
+              
+             
+              
+        }else if(updateTask.value=='completedDate'  && count==0){
+        	 var input = document.createElement("input");
+             input.type = "date";
+             input.className = "completedDate";
+             input.name = "completedDate";
+             input.id= "completedDate";
+             idd= "completedDate";
+             typeData.value="completedDate"
+             input.placeholder = "Enter Date";
+             var parent = document.getElementById("parentDiv");
+             parent.appendChild(input);
+              
+             
+          
+        }else if(updateTask.value=='isDone'  && count==0){
+        	 var input = document.createElement("input");
+             input.type = "text";
+             input.className = "isDone";
+             input.name = "isDone";
+             typeData.value="isDone"
+             input.id= "isDone";
+             idd= "isDone";
+             input.placeholder = "Enter done/pending";
+             var parent = document.getElementById("parentDiv");
+             parent.appendChild(input);
+             
+              
+             
+        } 
+        count++;
+            
+    
+  }
+ </script>
+
+
+ 
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
